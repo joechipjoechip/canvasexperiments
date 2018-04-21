@@ -22,20 +22,39 @@ function init() {
     canvas.height = window.innerHeight;
 
     c = canvas.getContext('2d');
+
+    attachEvents();
 }
 
-window.addEventListener('mousemove', e => {
-    mouse.x = e.x;
-    mouse.y = e.y;
-});
+function attachEvents () {
+    
+    window.addEventListener('mousemove', e => {
+        mouse.x = e.x;
+        mouse.y = e.y;
+    });
+    
+    window.addEventListener('mousedown', e => {
+        clicked = true;
+    });
+    
+    window.addEventListener('mouseup', e => {
+        clicked = false;
+    });
+    
+    window.addEventListener('touchstart', e => {
+        clicked = true;
+    });
+    
+    window.addEventListener('touchend', e => {
+        clicked = false;
+    });
 
-window.addEventListener('mousedown', e => {
-    clicked = true;
-});
+}
 
-window.addEventListener('mouseup', e => {
-    clicked = false;
-});
+function touchHandler (e) {
+    console.log(e);
+
+}
 
 function Circle(x, y, dx, dy, radius) {
     this.x = x;
@@ -78,9 +97,9 @@ function Circle(x, y, dx, dy, radius) {
             && mouse.y - this.y < detectSeuil && mouse.y - this.y > (detectSeuil * -1)) {
             
             if (this.radius < maxRadius) {
-                this.radius += 1;
-                this.x += this.dx;
-                this.y += this.dy;
+                // this.radius += 1;
+                // this.x += this.dx;
+                // this.y += this.dy;
                 // this.dx *= 2;
                 // this.dy *= 2;
                 // c.shadowColor = 'white';
