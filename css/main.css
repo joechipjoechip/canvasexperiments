@@ -1,0 +1,22 @@
+body {
+    padding: 0;
+    margin: 0;
+}
+
+#canvas {
+    background: black;
+    box-sizing: border-box;
+    /* border: 5px solid red; */
+    animation: canvasBg 5s infinite;
+}
+
+
+@keyframes canvasBg {
+    0%, 100% {
+
+    }
+
+    50% {
+        
+    }
+}
