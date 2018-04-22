@@ -1,18 +1,18 @@
 let canvas, c;
-let nbOccurences = 2000;
+let nbOccurences = window.innerWidth * 1.4;
 let circles = [];
 let traits = [];
 let speed = 2.2;
-let ratioSpecials = nbOccurences / 20;
+let ratioSpecials = nbOccurences / 15;
 
 let activateBlur = false;
-// let colors = ['#6DC0D5', '#DDFFF7', '#93E1D8', '#8CDFD6', '#424B54'];
-// let colors = [
-//     'rgba(109,192,213,0.5)',
-//     'rgba(221,255,247,0.5)',
-//     'rgba(147,225,216,0.5)',
-//     'rgba(255,147,79,0.05)'
-// ];
+
+let detectSeuil = 40;
+let mouseDistance = 200;
+let minRadius = 1;
+let maxRadius = 80;
+
+let clicked = false;
 
 // let colors = [
 //     'rgba(237,143,91,0.5)',
@@ -39,18 +39,14 @@ let colors = [
 ];
 
 // let colorBg = colors[0];
-let colorBg = 'rgba(255,255,255,0.4)';
+let colorBg = 'rgba(255,255,255,0.5)';
 
 let mouse = {
     x: undefined,
     y: undefined
 };
 
-let detectSeuil = 40;
-let minRadius = 1;
-let maxRadius = 80;
 
-let clicked = false;
 
 function init() {
     // colorAlphaMap();
@@ -96,17 +92,17 @@ function attachEvents () {
         setCanvasSize();
     });
 
-    window.addEventListener('click', e => {
-        // circles = [];
-        // traits = [];
-        // colorAlphaMap();
-        // createBubbles();
-    });
+    // window.addEventListener('click', e => {
+    //     circles = [];
+    //     traits = [];
+    //     colorAlphaMap();
+    //     createBubbles();
+    // });
 
 }
 
 function colorAlphaMap () {
-    colors = colors.map( color => {
+    return colors = colors.map( color => {
         return color.replace('alpha', ((Math.random()).toFixed(2)) * (1 - 0.5 + 1) + 0.5);
     });
     console.log('colorAlphaMap called');
@@ -121,18 +117,14 @@ class Particule {
         this.radius = radius;
         this.size = radius;
 
+        this.colors = colors;
         this.datColorIndex = Math.floor(Math.random() * (colors.length - 0 + 1));
-        this.color = colors[this.datColorIndex];
+        this.color = this.colors[this.datColorIndex];
 
         this.index = i;
         this.maxRadius = maxRadius;
         this.minRadius = minRadius;
     }
-
-    // changeColor () {
-    //     colorAlphaMap();
-    //     this.color = colors[this.datColorIndex];
-    // }
 
     borderLogic () {
         // Borders logic
@@ -143,6 +135,13 @@ class Particule {
         if (this.y > window.innerHeight - this.radius || this.y < 0) {
             this.dy = this.dy * -1;
         }
+
+        // if (this.x > (mouse.x + mouseDistance) - this.radius || this.x < (mouse.x - mouseDistance) ) {
+        //     this.dx = this.dx * -1;
+        // }
+        // if (this.y > (mouse.y + mouseDistance) - this.radius || this.y < (mouse.y - mouseDistance) ) {
+        //     this.dy = this.dy * -1;
+        // }
     }
 
     moveLogic () {
@@ -264,7 +263,7 @@ class Trait extends Particule {
             c.lineTo(this.x2, this.y2);
             
             // if (this.index % ratioSpecials === 0) {
-            //     c.lineTo(this.x3 * 1.2, this.y3 * 0.3);
+            //     c.lineTo(this.x1 * 0.3, this.y1 * 0.7);
             // }
 
             c.closePath();
@@ -304,7 +303,7 @@ function animate() {
     traits.forEach( triangle => triangle.update());
 }
 
-colorAlphaMap();
+
 
 function createBubbles () {
     for (let i = 0; i < nbOccurences; i++) {
@@ -323,8 +322,6 @@ function createBubbles () {
         traits.push(new Trait(x, y, dx, dy, radius, i));
     }
 }
-
-
 
 
 init();
