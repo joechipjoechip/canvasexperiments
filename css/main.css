@@ -1,22 +1,38 @@
+@import url('https://fonts.googleapis.com/css?family=Roboto');
+
 body {
     padding: 0;
     margin: 0;
+    font-family: 'Roboto';
 }
 
 #canvas {
     background: black;
-    box-sizing: border-box;
-    /* border: 5px solid red; */
-    animation: canvasBg 5s infinite;
+    position: fixed;
+    left: 0;
+    top: 0;
+    width: 100vw;
+    height: 100vh;
+
+    cursor: defaut;
 }
 
+main {
+    background: rgba(255,255,255,0.2);
+    width: 80%;
+    max-width: 500px;
+    margin: 0 auto;
+    margin-top: 15vh;
+    display: block;
+    position: relative;
+    height: 250px;
+    border-radius: 50px;
 
-@keyframes canvasBg {
-    0%, 100% {
+    text-align: center;
+    cursor: default;
 
-    }
+}
 
-    50% {
-
-    }
+main p:hover {
+    cursor: default;
 }
