@@ -7,7 +7,7 @@ body {
 }
 
 #canvas {
-    background: black;
+    /* background: black; */
     position: fixed;
     left: 0;
     top: 0;
@@ -15,6 +15,10 @@ body {
     height: 100vh;
 
     cursor: defaut;
+}
+
+#image {
+    display: none;
 }
 
 main {
@@ -30,7 +34,6 @@ main {
 
     text-align: center;
     cursor: default;
-
 }
 
 main p:hover {
