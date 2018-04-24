@@ -14,9 +14,9 @@ let pixel, hex, rgba, c;
 let pixelMap = [];
 let particules = [];
 
-let particuleSizeSmall = 1;
-let particuleSizeMedium = 3;
-let particuleSizeLarge = 6;
+let particuleSizeSmall = 0;
+let particuleSizeMedium = 2;
+let particuleSizeLarge = 5;
 
 let speed = 2;
 let pdx = speed;
@@ -60,8 +60,6 @@ function setSizeImage () {
         image.height = canvas.height;
         image.width = image.height * ratio;
     }
-
-    // c.scale(ratio, ratio);
 
     largeur = image.width;
     hauteur = image.height;
